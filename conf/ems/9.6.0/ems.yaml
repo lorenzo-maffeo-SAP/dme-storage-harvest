@@ -30,7 +30,7 @@ events:
       - parameters.hostname                 => host
     resolve_when_ems:
       - name: cf.disk.inventory.mismatchOK
-        resolve_after: 672h
+        resolve_after: 1h
 
   - name: cf.fm.takeoverFailed
     exports:
@@ -39,7 +39,7 @@ events:
       - parameters.partner_node_uuid        => partner_node_uuid
     resolve_when_ems:
       - name: cf.fm.takeoverComplete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cf.fm.versionMismatch
     exports:
@@ -48,12 +48,12 @@ events:
       - parameters.partnerVersion           => partner_version
     resolve_when_ems:
       - name: cf.fm.takeoverOfPartnerEnabled
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cf.fsm.takeover.noHeartbeat
     resolve_when_ems:
       - name: cf.fm.takeoverOfPartnerEnabled
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cf.fsm.takeoverByPartnerDisabled
     exports:
@@ -62,7 +62,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: cf.fm.takeoverByPartnerEnabled
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cf.fsm.takeoverHung
     exports:
@@ -79,7 +79,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: cf.fm.takeover.enabled
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: clam.node.ooq
     exports:
@@ -88,7 +88,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: clam.node.inq
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: clus.net.noNeighbors
 
@@ -110,14 +110,14 @@ events:
       - parameters.expiration               => expiration
     resolve_when_ems:
       - name: license.check.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: mgmt.nfslisteners.failure
     exports:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: mgmt.nfslisteners.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: mgmt.snapmir.ls.catchup.fail
     exports:
@@ -157,7 +157,7 @@ events:
       - parameters.portName                 => port
     resolve_when_ems:
       - name: net.ifgrp.lacp.link.active
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: netif.badEeprom
     exports:
@@ -199,7 +199,7 @@ events:
       - parameters.linkName                 => link_name
     resolve_when_ems:
       - name: net.ifgrp.lacp.link.active
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: rdb.recovery.failed
     exports:
@@ -207,7 +207,7 @@ events:
       - parameters.unit                     => unit
     resolve_when_ems:
       - name: rdb.ha.active
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: ses.status.ModuleError
     exports:
@@ -220,7 +220,7 @@ events:
       - parameters.locationText             => location_text
     resolve_when_ems:
       - name: ses.status.ModuleInfo
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: sis.changelog.full
     exports:
@@ -239,7 +239,7 @@ events:
       - parameters.nodename                 => node_name
     resolve_when_ems:
       - name: vifmgr.portHealthy
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: vifmgr.cluscheck.crcerrors
     exports: 
@@ -261,7 +261,7 @@ events:
       - parameters.toport                   => to_port
     resolve_when_ems:
       - name: vifmgr.lifbeinghosted
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: vifmgr.lifs.clusterlimit
     exports:
@@ -279,7 +279,7 @@ events:
       - parameters.nodeName                 => node_name
     resolve_when_ems:
       - name: vifmgr.port.monitor.passed
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: vifmgr.port.mtumismatch
     exports:
@@ -296,7 +296,7 @@ events:
       - parameters.nodeName                 => node_name
     resolve_when_ems:
       - name: vifmgr.portDeg.lifMoved
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: wafl.dir.size.max.warning
     exports:
@@ -311,7 +311,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: cf.fm.takeoverOfPartnerEnabled
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: disk.ioMediumError
     exports:
@@ -329,14 +329,14 @@ events:
       - parameters.disk_information         => disk_information
     resolve_when_ems:
       - name: disk.ioreassignsuccess
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: monitor.globalStatus.critical
     exports:
       - parameters.problem                  => problem_description
     resolve_when_ems:
       - name: monitor.globalStatus.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
 # EMS data for ocum Alerts
 
@@ -348,7 +348,7 @@ events:
       - parameters.error                    => error
     resolve_when_ems:
       - name: cf.fm.givebackComplete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: raid.uninitialized.parity.vol
     exports:
@@ -362,7 +362,7 @@ events:
       - parameters.rgname                   => rgname
     resolve_when_ems:
       - name: raid.rg.normal
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: callhome.aggr.restricted
 
@@ -373,14 +373,14 @@ events:
   - name: vifmgr.startup.failover.err
     resolve_when_ems:
       - name: vifmgr.started
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: vifmgr.cluscheck.lifdown
     exports:
       - parameters.lif_name                 => lif_name
     resolve_when_ems:
       - name: vifmgr.portHealthy
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: mlm.array.lun.PathFO
     exports:
@@ -403,7 +403,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: cf.fsm.takeoverOfPartnerEnabled
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: monitor.chassisPowerSupply.degraded
     exports:
@@ -411,17 +411,17 @@ events:
       - parameters.reasonText               => reasonText
     resolve_when_ems:
       - name: monitor.chassisPowerSupply.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: monitor.power.degraded
     resolve_when_ems:
       - name: monitor.power.normal
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: callhome.fans.failed
     resolve_when_ems:
       - name: monitor.fan.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: callhome.partner.down
 
@@ -430,7 +430,7 @@ events:
   - name: sfo.PartialGiveback
     resolve_when_ems:
       - name: sfo.giveback.complete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cf.rsrc.takeoverOpFail
     exports:
@@ -446,12 +446,12 @@ events:
       - parameters.portname                 => portname
     resolve_when_ems:
       - name: vifmgr.portup
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: callhome.sp.hbt.stopped
     resolve_when_ems:
       - name: sp.heartbeat.resumed
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: sp.notConfigured
     exports:
@@ -465,12 +465,12 @@ events:
       - parameters.object_uuid              => object_uuid
     resolve_when_ems:
       - name: monitor.fan.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: callhome.shlf.fault
     resolve_when_ems:
       - name: monitor.shelf.fault.ok
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: ses.status.currentError
     exports:
@@ -482,7 +482,7 @@ events:
       - parameters.locationText             => locationText
     resolve_when_ems:
       - name: ses.status.currentInfo
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: ses.status.currentWarning
     exports:
@@ -494,7 +494,7 @@ events:
       - parameters.locationText             => locationText
     resolve_when_ems:
       - name: ses.status.currentInfo
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: ses.multipath.ReqError
 
@@ -514,7 +514,7 @@ events:
       - parameters.error                    => error
     resolve_when_ems:
       - name: snapmirror.migrate.complete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: snapmirror.migrate.srcErr
     exports:
@@ -525,7 +525,7 @@ events:
       - parameters.error                    => error
     resolve_when_ems:
       - name: snapmirror.migrate.complete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: snapvault.dst.opNotComplete
     exports:
@@ -540,7 +540,7 @@ events:
       - parameters.error                    => error
     resolve_when_ems:
       - name: replication.dst.resync.success
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: mgmt.snapmir.init.fail
     exports:
@@ -595,7 +595,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: sfo.giveback.complete
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: callhome.hainterconnect.down
     exports:
@@ -603,7 +603,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: ic.connection.up
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: sk.panic
 
@@ -615,7 +615,7 @@ events:
   - name: callhome.reboot.takeover
     resolve_when_ems:
       - name: callhome.reboot.giveback
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: Nblade.cifsNoPrivShare
     exports:
@@ -636,7 +636,7 @@ events:
       - parameters.nodeUuid                 => nodeUuid
     resolve_when_ems:
       - name: vifmgr.lifbeinghosted
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: osc.signatureMismatch
     exports:
@@ -652,7 +652,7 @@ events:
       - parameters.object_uuid              => object_uuid
     resolve_when_ems:
       - name: qos.monitor.memory.abated
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: wafl.readdir.expired
     exports:
@@ -668,7 +668,7 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: arl.OpFinished
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cifs.shadowcopy.failure
     exports:
@@ -683,7 +683,7 @@ events:
       - parameters.vserver_name             => vserver_name
     resolve_when_ems:
       - name: vserver.stop.succeeded
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: Nblade.cifsManyAuths
     exports:
@@ -722,7 +722,7 @@ events:
       - parameters.cmd_output               => cmd_output
     resolve_when_ems:
       - name: vifmgr.cluscheck.droppednone
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: cluster.switch.reboot
     exports:
@@ -745,7 +745,7 @@ events:
       - parameters.link_downtime            => link_downtime
     resolve_when_ems:
       - name: ic.connection.up
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: wafl.vol.outOfInodes
     exports:
@@ -762,7 +762,7 @@ events:
       - parameters.volume_dsid              => volume_dsid
     resolve_when_ems:
       - name: LUN.online
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: unowned.disk.reminder
     exports:
@@ -782,12 +782,12 @@ events:
       - parameters.timeout3                 => timeout3
     resolve_when_ems:
       - name: nvram.battery.charging.normal
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: monitor.nvmembattery.warninglow
     resolve_when_ems:
       - name: nvram.battery.charging.normal
-        resolve_after: 672h
+        resolve_after: 30m
 
   - name: wafl.vol.invalidate.fh
     exports:
@@ -799,7 +799,7 @@ events:
       - parameters.pausedSummary            => pausedSummary
     resolve_when_ems:
       - name: upgrademgr.update.completed
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: netif.tcp.conn.bad.checksum
     exports:
@@ -813,7 +813,7 @@ events:
       - parameters.err                      => err
     resolve_when_ems:
       - name: wafl.vol.clearing.in.nvfailed.state
-        resolve_after: 672h
+        resolve_after: 3h
 
   - name: wafl.dir.size.warning
     exports:
@@ -832,4 +832,4 @@ events:
       - parameters.reason                   => reason
     resolve_when_ems:
       - name: wafl.mount.info
-        resolve_after: 672h
+        resolve_after: 30m
