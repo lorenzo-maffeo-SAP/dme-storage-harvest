@@ -1,6 +1,6 @@
-name:                     Volume
-query:                    api/private/cli/volume
-object:                   volume
+name: Volume
+query: api/private/cli/volume
+object: volume
 
 counters:
   - ^^volume
@@ -10,6 +10,7 @@ counters:
   - ^clone_parent_name                            => clone_parent_volume
   - ^clone_parent_vserver                         => clone_parent_svm
   - ^clone_volume                                 => is_flexclone
+  - ^comment                                      => comment
   - ^is_encrypted                                 => isEncrypted
   - ^is_sis_volume                                => is_sis_volume
   - ^is_space_enforcement_logical                 => is_space_enforcement_logical
@@ -52,8 +53,8 @@ counters:
   - percent_used                                  => size_used_percent
   - performance_tier_inactive_user_data           => space_performance_tier_inactive_user_data
   - performance_tier_inactive_user_data_percent   => space_performance_tier_inactive_user_data_percent
-#  - physical_used                                 => space_physical_used          # See virtual_used below
-#  - physical_used_percent                         => space_physical_used_percent  # See virtual_used below
+  #  - physical_used                                 => space_physical_used          # See virtual_used below
+  #  - physical_used_percent                         => space_physical_used_percent  # See virtual_used below
   - sis_space_saved                               => sis_total_saved
   - sis_space_saved_percent                       => sis_total_saved_percent
   - size                                          => size
@@ -103,7 +104,7 @@ endpoints:
 plugins:
   - Volume:
       schedule:
-        - data: 15m  # should be multiple of poll duration
+        - data: 15m # should be multiple of poll duration
       include_constituents: false
   - MetricAgent:
       compute_metric:
@@ -116,7 +117,7 @@ plugins:
       replace_regex:
         - svm_root root_volume `false` `No`
         - svm_root root_volume `true` `Yes`
-        - svm_root root_volume `^$` `Yes`      # svm_root is not available in Rest response for volumes like vol0
+        - svm_root root_volume `^$` `Yes` # svm_root is not available in Rest response for volumes like vol0
       # Ignore transient volumes, e.g. SnapProtect, SnapManager, SnapCenter, CommVault, Clone, and Metadata volumes
       exclude_regex:
         - volume `.+_CVclone`
