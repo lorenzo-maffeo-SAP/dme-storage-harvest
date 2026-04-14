@@ -22,6 +22,7 @@ events:
       - ^^node.name => node
       - ^^parameters.volume_name => vol
       - ^^parameters.volume_dsid => dsid 
+       - parameters.object_type => object_type
 
   - name: LUN.online
     exports:
@@ -120,10 +121,12 @@ events:
   - name: monitor.fan.failed
     exports:
       - ^^node.name => node
+      - ^^parameters.report => fan
 
   - name: monitor.fan.ok
     exports:
       - ^^node.name => node
+      - ^^parameters.report => fan
 
   - name: vifmgr.cluscheck.lifdown
     exports:
@@ -148,10 +151,12 @@ events:
   - name: monitor.chassisPowerSupply.degraded
     exports:
       - ^^node.name => node
+      - ^^parameters.ps_number => ps_number
 
   - name: monitor.chassisPowerSupply.ok
     exports:
       - ^^node.name => node
+      - ^^parameters.ps_number => ps_number
 
   - name: nvmem.battery.capacity.low
     exports:
@@ -227,17 +232,19 @@ events:
     exports:
       - ^^node.name => node
       - ^^parameters.prodChannel => prodChannel
-
+      - ^^parameters.psNumber => psNumber
   
   - name: ses.status.currentWarning
     exports:
       - ^^node.name => node
       - ^^parameters.prodChannel => prodChannel
+      - ^^parameters.psNumber => psNumber
 
   - name: ses.status.currentInfo
     exports:
       - ^^node.name => node
       - ^^parameters.prodChannel => prodChannel
+      - ^^parameters.psNumber => psNumber
 
   - name: cf.fsm.takeoverOfPartnerDisabled
     exports:
@@ -275,12 +282,14 @@ events:
       - ^^node.name => node
       - ^^parameters.vol => vol
       - ^^parameters.volident => volident
+      - ^^parameters.snapname => snapname
 
   - name: wafl.snap.create
     exports:
       - ^^node.name => node
       - ^^parameters.vol => vol
       - ^^parameters.volident => volident
+      - ^^parameters.snapname => snapname
 
   - name: vifmgr.lifdown.noports
     exports:
@@ -345,12 +354,12 @@ events:
   - name: mgmt.snapmir.init.fail
     exports:
       - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpaths => dstpaths
+      - ^^parameters.dstpaths => dstpath
 
   - name: snapmirror.dst.chkDone
     exports:
       - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpath => dstpaths
+      - ^^parameters.dstpath => dstpath
 
   - name: mgmt.snapmir.resync.fail
     exports:
