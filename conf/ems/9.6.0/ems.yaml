@@ -91,11 +91,6 @@ events:
       - ^^node.name => node
       - ^^parameters.vol => aggregate
 
-  - name: raid.vol.state.online
-    exports:
-      - ^^node.name => node
-      - ^^parameters.vol => aggregate
-
   - name: ha.giveback.aggrOnlineFailed
     exports:
       - ^^node.name => node
@@ -170,19 +165,7 @@ events:
     exports:
       - ^^node.name => node
 
-  - name: nvram.battery.capacity.normal
-    exports:
-      - ^^node.name => node
-
   - name: snapmirror.migrate.srcErr
-    exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstfiler => dstfiler
-      - ^^parameters.dstpath => dstpath
-
-  - name: snapmirror.migrate.complete
     exports:
       - ^^node.name => node
       - ^^parameters.srcfiler => srcfiler
@@ -212,6 +195,7 @@ events:
       - ^^parameters.srcfiler => srcfiler
       - ^^parameters.srcpath => srcpath
       - ^^parameters.dstpath => dstpath
+      - ^^parameters.rtype => rtype 
 
   - name: replication.dst.resync.success
     exports:
@@ -219,6 +203,7 @@ events:
       - ^^parameters.srcfiler => srcfiler
       - ^^parameters.srcpath => srcpath
       - ^^parameters.dstpath => dstpath
+      - ^^parameters.rtype => rtype 
 
   - name: upgrademgr.update.pausedErr
     exports:
@@ -261,7 +246,6 @@ events:
       - ^^node.name => node
       - ^^parameters.partner => partner
 
-# bereits ein Mal im EMS File enthalten -> TBC
   - name: cf.fsm.takeoverByPartnerEnabled
     exports:
       - ^^node.name => node
@@ -291,16 +275,6 @@ events:
       - ^^parameters.volident => volident
       - ^^parameters.snapname => snapname
 
-  - name: vifmgr.lifdown.noports
-    exports:
-      - ^^parameters.tonode => nodename
-      - ^^parameters.toport => portname
-
-  - name: vifmgr.portup
-    exports:
-      - ^^parameters.nodename => nodename
-      - ^^parameters.portname => portname
-
   - name: mlm.array.lun.PathFO
     exports:
       - ^^node.name => node
@@ -312,10 +286,6 @@ events:
       - ^^node.name => node
       - ^^parameters.adapterName => adapterName
       - ^^parameters.arrayName => arrayName
-
-  - name: vifmgr.lifs.overcapacity
-    exports:
-      - ^^node.name => node
 
   - name: vifmgr.lifdeleted.byadmin
     exports:
@@ -333,17 +303,23 @@ events:
       - ^^parameters.shelf => shelf
       - ^^parameters.bay => bay
 
-  - name: callhome.shlf.fault
+  - name: monitor.shelf.fault
     exports:
       - ^^node.name => node
+      - ^^parameters.channel => channel
 
   - name: monitor.shelf.fault.ok
     exports:
       - ^^node.name => node
+      - ^^parameters.channel => channel
 
   - name: cf.takeover.disabled
 
   - name: clam.partner.halting
+    exports:
+      - ^^node.name => node
+
+  - name: cf.fm.takeoverComplete
     exports:
       - ^^node.name => node
 
@@ -361,32 +337,11 @@ events:
       - ^^parameters.srcpath => srcpath
       - ^^parameters.dstpath => dstpath
 
-  - name: mgmt.snapmir.resync.fail
-    exports:
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpath => dstpath
-
-  - name: monitor.volume.full
-    exports:
-      - ^^parameters.name => vol
-
   - name: wafl.vol.autoSize.done
     exports: 
       - ^^parameters.vol => vol
 
   - name: wafl.vol.inode.space.usage
-    exports:
-      - ^^parameters.vol => vol
-
-  - name: wafl.vol.autoSize.done
-    exports:
-      - ^^parameters.vol => vol
-
-  - name: monitor.volume.nearlyFull
-    exports:
-      - ^^parameters.name => vol
-
-  - name: wafl.vol.autoSize.done
     exports:
       - ^^parameters.vol => vol
 
@@ -412,10 +367,6 @@ events:
     exports:
       - ^^node.name => node
 
-  - name: nvmem.battery.capacity.normal
-    exports:
-      - ^^node.name => node
-
   - name: km.run.external.setup
     exports:
       - ^^node.name => node
@@ -423,16 +374,16 @@ events:
   - name: km.keyserver.available 
     exports:
       - ^^node.name => node
+      - ^^parameters.vserver => vserver
+      - ^^parameters.address => address
 
   - name: km.keyserver.notavailable
     exports:
       - ^^node.name => node
+      - ^^parameters.vserver => vserver
+      - ^^parameters.address => address
 
   - name: km.keyretrieve.failed
-    exports:
-      - ^^node.name => node
-
-  - name: km.keyserver.available
     exports:
       - ^^node.name => node
 
@@ -440,23 +391,22 @@ events:
     exports:
       - ^^node.name => node
 
-  - name: sfo.giveback.complete
-    exports:
-      - ^^node.name => node
-
   - name: clam.node.ooq
     exports:
       - ^^node.name => node
+      - ^^parameters.hostname => hostname
+
+  - name: clam.node.inq
+    exports:
+      - ^^node.name => node
+      - ^^parameters.hostname => hostname
 
   - name: sfo.giveback.complete
     exports:
       - ^^node.name => node
+      - ^^parameters.partnerName => hostname
 
   - name: callhome.partner.down
-    exports:
-      - ^^node.name => node
-
-  - name: sfo.giveback.complete
     exports:
       - ^^node.name => node
 
@@ -464,15 +414,7 @@ events:
     exports:
       - ^^node.name => node
 
-  - name: sfo.giveback.complete
-    exports:
-      - ^^node.name => node
-
   - name: sfo.PartialGiveback
-    exports:
-      - ^^node.name => node
-
-  - name: sfo.giveback.complete
     exports:
       - ^^node.name => node
 
@@ -480,15 +422,7 @@ events:
     exports:
       - ^^node.name => node
 
-  - name: sfo.giveback.complete
-    exports:
-      - ^^node.name => node
-
   - name: spm.httpd.process.exit
-    exports:
-      - ^^node.name => node
-
-  - name: sfo.giveback.complete
     exports:
       - ^^node.name => node
 
@@ -501,3 +435,15 @@ events:
     exports:
       - ^^parameters.vserver_name => svm
       - ^^parameters.vserver_uuid => svm_uuid
+
+  - name: sp.notConfigured
+    exports:
+      - ^^node.name => node
+
+  - name: callhome.sp.hbt.stopped
+    exports:
+      - ^^node.name => node
+
+  - name: sp.heartbeat.resumed
+    exports:
+      - ^^node.name => node
