@@ -447,3 +447,13 @@ events:
   - name: sp.heartbeat.resumed
     exports:
       - ^^node.name => node
+
+  - name: monitor.volume.full
+    exports:
+      - ^^parameters.name => volume
+      - ^^node.name => node
+
+  - name: monitor.volume.nearlyFull
+    exports:
+      - ^^parameters.name => volume
+      - ^^node.name => node
