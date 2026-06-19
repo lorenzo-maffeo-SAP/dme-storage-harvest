@@ -2,7 +2,7 @@ name: EMS
 query: api/support/ems/events
 object: ems
 
-# default list of exports attached to all EMS event
+# default list of exports attached to all EMS events
 exports:
   - message.name                            => message
   - node.name                               => node
@@ -19,7 +19,8 @@ events:
 
   - name: monitor.chassisPowerSupply.degraded
     exports:
-      - parameters.ps_number        => ps_number
+      - ^^node.name                 => node
+      - ^^parameters.ps_number        => ps_number
       - parameters.reasonText       => reasonText
 
   - name: monitor.power.degraded
@@ -67,11 +68,6 @@ events:
     exports:
       - parameters.aggr_uuid          => aggr_uuid
       - parameters.reason            => reason
-
-  - name: callhome.hainterconnect.down
-    exports:
-      - parameters.subject          => subject
-      - parameters.reason          => reason
 
   - name: sk.panic
 
@@ -303,8 +299,9 @@ events:
       - parameters.lifLimit => lif_limit
 
   - name: vifmgr.cluscheck.crcerrors
-    exports: -parameters.portname => port_name
-      -parameters.nodename => node_name
+    exports:
+      - parameters.portname => port_name
+      - parameters.nodename => node_name
 
   - name: vifmgr.clus.linkdown
     exports:
@@ -456,7 +453,7 @@ events:
 
   - name: cf.fm.takeoverFailed
     exports:
-      - parameters.reson                                         => reason
+      - parameters.reason                                        => reason
       - parameters.token                                         => token
       - parameters.partner_node_uuid                             => partner_node_uuid
 
@@ -492,7 +489,7 @@ events:
       - ^^node.name => node
       - ^^parameters.volume_name => vol
       - ^^parameters.volume_dsid => dsid 
-       - parameters.object_type => object_type
+      - parameters.object_type => object_type
 
   - name: LUN.online
     exports:
@@ -612,11 +609,6 @@ events:
     exports:
       - ^^parameters.diskName => diskName
       - ^^node.name => node
-
-  - name: monitor.chassisPowerSupply.degraded
-    exports:
-      - ^^node.name => node
-      - ^^parameters.ps_number => ps_number
 
   - name: monitor.chassisPowerSupply.ok
     exports:
@@ -782,11 +774,6 @@ events:
     exports:
       - ^^node.name => node
       - ^^parameters.channel => channel
-
-  - name: cf.takeover.disabled
-    exports:
-      - parameters.reason => reason
-
 
   - name: clam.partner.halting
     exports:
