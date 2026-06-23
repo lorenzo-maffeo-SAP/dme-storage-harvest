@@ -785,7 +785,7 @@ events:
   - name: mgmt.snapmir.init.fail
     exports:
       - parameters.srcpath => srcpath
-      - parameters.dstpaths => dstpath
+      - parameters.dstpath => dstpath
 
   - name: snapmirror.dst.chkDone
     exports:
@@ -1027,7 +1027,7 @@ events:
       - parameters.recoveryAction => recoveryAction
       - parameters.driver => driver
 
-  - name: netif.init events
+  - name: netif.init.failed
     exports:
       - parameters.ifName => ifName
       - parameters.module => module
@@ -1250,7 +1250,7 @@ events:
       - parameters.dst_vif => dst_vif
       - parameters.dst_node => dst_node
 
-  - name: vifmgr.cluscheck.droppedlarge
+  - name: vifmgr.cluscheck.hwerrors
     exports:
       - parameters.lif_name => lif_name
       - parameters.node_name => node_name
