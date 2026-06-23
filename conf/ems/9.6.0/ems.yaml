@@ -169,11 +169,6 @@ events:
       - parameters.switch_name       => switch_name
       - parameters.time             => time
 
-  - name: monitor.raid.brokenDisk
-    exports:
-      - parameters.type       => type
-      - parameters.rgname     => rgname
-
   - name: shm.threshold.highIOLatency
     exports:
       - parameters.disk_name       => disk_name
@@ -1087,10 +1082,6 @@ events:
       - parameters.message => message
 
   - name: rdb.env.processDuplicate
-    exports:
-      - parameters.message => message
-
-  - name: rdb.env.replicaCorrupt
     exports:
       - parameters.message => message
 
