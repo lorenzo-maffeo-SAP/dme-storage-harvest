@@ -1326,3 +1326,14 @@ events:
       - parameters.count => count
       - parameters.model => model
       - parameters.limit => limit
+
+  - name: raid.sp.rdb.update.failed
+    exports:
+      - parameters.name => name
+      - parameters.uuid => uuid
+      - parameters.reason => reason
+      - parameters.jobid => jobid
+
+  - name: scsiblade.ics.trace.dumpfile
+    exports:
+      - parameters.trace_type_name => trace_type_name
