@@ -63,13 +63,19 @@ events:
       - parameters.diskName          => diskName
       - parameters.serialno          => serialno
       - parameters.reason            => reason
+      - parameters.powerOnHours      => poh
+      - parameters.glistEntries      => glist
+      - parameters.disk_information  => disk_info
 
   - name: gb.netra.ca.check.failed
     exports:
-      - parameters.aggr_uuid          => aggr_uuid
+      - parameters.vol              => aggr
+      - parameters.aggr_uuid         => aggr_uuid
       - parameters.reason            => reason
 
   - name: sk.panic
+    exports:
+      - parameters.reason => reason
 
   - name: mgmtgwd.rootvolrec.low.space
     exports:
@@ -172,6 +178,7 @@ events:
   - name: shm.threshold.highIOLatency
     exports:
       - parameters.disk_name       => disk_name
+      - parameters.agrsv_IO_count  => count
 
   - name: ic.HAInterconnectLinkDown
     exports:
@@ -369,6 +376,11 @@ events:
       - parameters.ifName => interface_name
 
   - name: net.ifgrp.lacp.link.inactive
+    exports:
+      - parameters.aggregateName => link_aggregate_name
+      - parameters.portName      => port
+
+  - name: net.ifgrp.lacp.link.active
     exports:
       - parameters.aggregateName => link_aggregate_name
       - parameters.portName      => port
@@ -807,8 +819,8 @@ events:
 
   - name: vifmgr.port.monitor.passed
     exports:
-      - parameters.portName => portName
-      - parameters.nodeName => nodeName
+      - parameters.portName => port_name
+      - parameters.nodeName => node_name
 
   - name: monitor.nvramLowBatteries
     exports:
@@ -931,6 +943,10 @@ events:
       - parameters.err_str => error
   
   - name: boot.varfs.backup.success
+
+  - name: fmmb.mediator.noLckdisk
+    exports:
+      - parameters.side => side
 
   - name: fmmb.mediator.nullLckdiskSuggest
     exports:
@@ -1273,8 +1289,8 @@ events:
       - parameters.vifname => vifname
       - parameters.vsrvId => vsrvId
       - parameters.vifIp => vifIp
-      - parameters.node => node
-      - parameters.port => port
+      - parameters.node => host_node
+      - parameters.port => host_port
 
   - name: vifmgr.portowner.err
     exports:
@@ -1295,6 +1311,14 @@ events:
       - parameters.tonode => tonode
       - parameters.toport => toport
       - parameters.error => error
+
+  - name: vifmgr.lifbeinghosted
+    exports:
+      - parameters.vifname => vifname
+      - parameters.vsrvid => vsrvid
+      - parameters.vifip => vifip
+      - parameters.tonode => tonode
+      - parameters.toport => toport
 
   - name: vsa.vsphere.connected
     exports:
